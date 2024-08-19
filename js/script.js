@@ -36,9 +36,7 @@ function waterPlants() {
     }
 }
 
-function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-}
+ 
 
 function animateCoinCount(start, end) {
     const duration = 1000; // Duration of the animation in milliseconds

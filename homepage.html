@@ -80,8 +80,40 @@
     <div>
         <p>หน้าแรก</p>
         <div class="button-container">
-            <a href="./index.html" class="button">ต่อไป</a>
+            <a href="#" class="button" onclick="showPopup()">ต่อไป</a>
         </div>
     </div>
+
+    <!-- Popup Form -->
+    <div id="popup-form" style="display: none;">
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+            <h3>กรอกข้อมูลของคุณ</h3>
+            <input type="text" id="name" placeholder="กรอกชื่อของคุณ" required>
+            <input type="text" id="class" placeholder="กรอกชั้นเรียนของคุณ" required>
+            <button onclick="submitForm()">ส่งข้อมูล</button>
+        </div>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popup-form').style.display = 'block';
+        }
+
+        function submitForm() {
+            var name = document.getElementById('name').value;
+            var className = document.getElementById('class').value;
+            
+            if (name && className) {
+                // Store data in localStorage
+                localStorage.setItem('userName', name);
+                localStorage.setItem('userClass', className);
+
+                // Redirect to index.html
+                window.location.href = 'index.html';
+            } else {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+            }
+        }
+    </script>
 </body>
 </html>

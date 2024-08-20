@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 3 - Galactic Adventure</title>
+    <link rel="stylesheet" href="./css/level3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Level 3 Banner -->
+    <div class="level-banner">
+        <span>Level 3 - Galactic Adventure</span>
+    </div>
+
+    <!-- Interactive Elements -->
+    <div class="interactive-elements">
+        <!-- Galactic Plot -->
+        <div class="galactic-plot" onclick="plantSeed(this)">
+            <img src="./img/sc2.jpeg" alt="Galactic Plot">
+        </div>
+
+        <!-- Progress Container -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="icon-container">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <button class="styled-button" onclick="waterPlants()">Water Plants</button>
+            <div class="button-row">
+                <button class="icon-button">
+                    <i class="fas fa-space-shuttle"></i> <!-- Space Shuttle icon -->
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-planet"></i> <!-- Planet icon -->
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-star"></i> <!-- Star icon -->
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-alien"></i> <!-- Alien icon -->
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coins and Information -->
+    <div class="top-bar">
+        <div class="coins">Coins: <span id="coin-count">0</span></div>
+        <div class="user-info">
+            Name: <span id="user-name">Guest</span>, Class: <span id="user-class">Unknown</span>
+        </div>
+        <div class="buttons-container">
+            <div id="current-time" class="current-time"></div>
+            <div id="calendar-icon" class="calendar-icon" onclick="toggleDropdown()">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div id="calendar-dropdown" class="dropdown-content">
+                <ul>
+                    <li>Galactic Event 1</li>
+                    <li>Galactic Event 2</li>
+                    <li>Galactic Event 3</li>
+                </ul>
+            </div>
+            <button class="styled-button collect-points-button">Collect Points</button>
+            <button id="sound-button" class="styled-button sound-button">
+                <i id="sound-icon" class="fas fa-volume-up"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Popup HTML -->
+    <div id="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <div id="quiz-container"></div>
+            <button class="styled-button close-popup-button" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="./js/script.js"></script>
+    <script src="./js/datetime.js"></script>
+    <script src="./js/sound.js"></script>
+    <script src="./js/calendar.js"></script>
+    <script src="./js/question.js"></script>
+    <script src="./js/coin.js"></script>
+    <script src="./js/quiz.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const collectPointsButton = document.querySelector('.collect-points-button');
+            const quizContainer = document.getElementById('quiz-container');
+            const popup = document.getElementById('popup');
+
+            function showQuizContainer() {
+                quizContainer.style.display = 'block'; // Show the quiz container
+                fetchQuizData(); // Fetch quiz data and populate the container
+            }
+
+            function hideQuizContainer() {
+                quizContainer.style.display = 'none'; // Hide the quiz container
+            }
+
+            collectPointsButton.addEventListener('click', () => {
+                showQuizContainer();
+            });
+
+            document.addEventListener('click', (event) => {
+                if (event.target.classList.contains('check-answers-button')) {
+                    checkAnswers();
+                }
+            });
+
+            function updateDisplay() {
+                var name = localStorage.getItem('userName');
+                var className = localStorage.getItem('userClass');
+                var coinCountElement = document.getElementById('coin-count');
+                var userNameElement = document.getElementById('user-name');
+                var userClassElement = document.getElementById('user-class');
+
+                if (name && className) {
+                    coinCountElement.textContent = '0';
+                    userNameElement.textContent = name;
+                    userClassElement.textContent = className;
+                } else {
+                    userNameElement.textContent = 'Guest';
+                    userClassElement.textContent = 'Unknown';
+                }
+            }
+
+            window.onload = updateDisplay;
+        });
+    </script>
+</body>
+
+</html>

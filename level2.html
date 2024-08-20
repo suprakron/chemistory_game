@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 2 - The Neon Garden</title>
+    <link rel="stylesheet" href="./css/level2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Level 2 Banner -->
+    <div class="level-banner">
+        <span>Level 2 - The Neon Garden</span>
+    </div>
+
+    <!-- Interactive Elements -->
+    <div class="interactive-elements">
+        <div class="neon-plot" onclick="plantSeed(this)">
+            <img src="./img/img_sci.jpeg" alt="Neon Plot">
+        </div>
+
+        <div class="controls">
+            <!-- Enhanced Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div class="icon-container">
+                <i class="fas fa-star"></i>
+            </div>
+            <button class="styled-button" onclick="waterPlants()">Water Plants</button>
+
+            <div class="button-row">
+                <button class="icon-button">
+                    <i class="fas fa-cogs"></i> <!-- Cogs icon -->
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-bolt"></i> <!-- Bolt icon -->
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-gem"></i> <!-- Gem icon -->
+                </button>
+                <button class="icon-button">
+                    <i class="fas fa-rocket"></i> <!-- Rocket icon -->
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coins and Information -->
+    <div class="top-bar">
+        <div class="coins">Coins: <span id="coin-count">0</span></div>
+        <div class="user-info">Name: <span id="user-name">Guest</span>, Class: <span id="user-class">Unknown</span></div>
+        <div class="buttons-container">
+            <div id="current-time" class="current-time"></div>
+            <div id="calendar-icon" class="calendar-icon" onclick="toggleDropdown()">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div id="calendar-dropdown" class="dropdown-content">
+                <ul>
+                    <li>Event 1</li>
+                    <li>Event 2</li>
+                    <li>Event 3</li>
+                </ul>
+            </div>
+            <button class="styled-button collect-points-button">Collect Points</button>
+            <button id="sound-button" class="styled-button sound-button">
+                <i id="sound-icon" class="fas fa-volume-up"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Popup HTML -->
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <div id="quiz-container"></div>
+            <button class="styled-button close-popup-button" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="./js/script.js"></script>
+    <script src="./js/datetime.js"></script>
+    <script src="./js/sound.js"></script>
+    <script src="./js/calendar.js"></script>
+    <script src="./js/question.js"></script>
+    <script src="./js/coin.js"></script>
+    <script src="./js/quiz.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const collectPointsButton = document.querySelector('.collect-points-button');
+            const quizContainer = document.getElementById('quiz-container');
+            const popup = document.getElementById('popup');
+
+            function showQuizContainer() {
+                quizContainer.style.display = 'block'; // Show the quiz container
+                fetchQuizData(); // Fetch quiz data and populate the container
+            }
+
+            function hideQuizContainer() {
+                quizContainer.style.display = 'none'; // Hide the quiz container
+            }
+
+            function updateDisplay() {
+                var name = localStorage.getItem('userName');
+                var className = localStorage.getItem('userClass');
+                var coinCountElement = document.getElementById('coin-count');
+                var userNameElement = document.getElementById('user-name');
+                var userClassElement = document.getElementById('user-class');
+
+                if (name && className) {
+                    coinCountElement.textContent = '0';
+                    userNameElement.textContent = name;
+                    userClassElement.textContent = className;
+                } else {
+                    userNameElement.textContent = 'Guest';
+                    userClassElement.textContent = 'Unknown';
+                }
+            }
+
+            window.onload = updateDisplay;
+        });
+    </script>
+</body>
+
+</html>

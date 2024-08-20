@@ -10,6 +10,7 @@ body {
     background-size: cover;
     font-family: Arial, sans-serif;
     position: relative;
+    transition: background-image 0.5s ease-in-out;
 }
 
 /* Diagonal Banner Style */
@@ -21,7 +22,6 @@ body {
     margin: 10px 0;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
-    /* Rounded corners */
 }
 
 .diagonal-banner span {
@@ -33,7 +33,6 @@ body {
     text-transform: uppercase;
     line-height: 50px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* Text shadow */
 }
 
 /* Clock Display */
@@ -46,7 +45,6 @@ body {
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    /* Text shadow */
     display: flex;
     align-items: center;
 }
@@ -56,14 +54,12 @@ body {
     margin: 20px 0;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
-    /* Rounded corners */
 }
 
 .farm-plot img {
     width: 200px;
     height: auto;
     border-radius: 12px;
-    /* Rounded corners */
 }
 
 /* Controls Section */
@@ -74,49 +70,186 @@ body {
     justify-content: center;
     margin: 20px 0;
 }
-/*-------------------------------------Button style ----------------------------------------------------------- */
+
+/* Trophy Icon */
 .trophy-icon-container {
     margin-left: 10px;
-    font-size: 24px; /* Adjust size as needed */
-    color: gold; /* Trophy color */
+    font-size: 24px;
+    color: gold;
 }
-/*-------------------------------------END  ----------------------------------------------------------- */
 
-
-/*-------------------------------------Button style ----------------------------------------------------------- */
+/* Buttons Container */
 .buttons-container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 10px;
-
+}
+/*-----------------------------------------------------------name ------------------------------------------------ */
+.user-info {
+    background: rgba(255, 255, 255, 0.8); /* พื้นหลังเบลอ */
+    border: 2px solid #007bff; /* ขอบของ div */
+    border-radius: 15px; /* มุมที่โค้งมน */
+    padding: 20px; /* ระยะห่างภายใน */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* เงาของ div */
+    margin: 20px 0; /* ระยะห่างด้านบนและล่าง */
+    font-size: 1.2rem; /* ขนาดฟอนต์ */
+    color: #333; /* สีตัวอักษร */
+    font-weight: bold; /* ความหนาของฟอนต์ */
+    display: flex; /* ใช้ flexbox สำหรับการจัดแนว */
+    justify-content: center; /* จัดแนวกลางแนวนอน */
+    align-items: center; /* จัดแนวกลางแนวตั้ง */
+    text-align: center; /* จัดแนวข้อความกลาง */
+    backdrop-filter: blur(10px); /* เบลอพื้นหลัง */
 }
 
-/* Container for buttons in a row */
+.user-info span {
+    color: #007bff; /* สีข้อความ */
+    margin: 0 10px; /* ระยะห่างระหว่างข้อความ */
+    font-weight: normal; /* น้ำหนักฟอนต์ปกติ */
+}
+
+.user-info:before {
+    content: '👤'; /* เพิ่มไอคอนผู้ใช้ข้างหน้าข้อความ */
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .user-info {
+        font-size: 1rem; /* ขนาดฟอนต์ที่เล็กลงบนหน้าจอขนาดเล็ก */
+        padding: 15px; /* ระยะห่างภายในที่เล็กลง */
+    }
+
+    .user-info span {
+        margin: 0 5px; /* ลดระยะห่างระหว่างข้อความ */
+    }
+}
+
+
+/* ------------------------------------------- ข้อคำถาม ------------------------------- */
+
+ 
+.quiz-popup {
+    display: none;  
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Show popup */
+.quiz-popup.show {
+    display: flex;
+    opacity: 1;
+}
+
+/* Popup content */
+.quiz-popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Show popup content */
+.quiz-popup-content.show {
+    opacity: 1;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------- end ------------------------------- */
+
+
+
+
+/* ------------------------------------------- ปุ่มเกมส์ด้านล่าง ------------------------------- */
+.icon-button {
+    width: 60px; 
+    height: 60px;
+    border: none;
+    border-radius: 50%;  
+    background: linear-gradient(145deg, #ff7f50, #ff6347); 
+    color: white;
+    font-size: 24px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.icon-button:hover {
+    transform: scale(1.1);  
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.icon-button:active {
+    transform: scale(0.95); 
+}
+
+
+
+
 .button-row {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 15px;  
     margin-top: 20px;
-    gap: 10px;
-    /* Space between the buttons */
 }
 
 /* 3D Styled Buttons */
 .styled-button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    background: linear-gradient(145deg, #ff7f50, #ff6347);
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
 }
 
 .styled-button:hover {
-    background-color: #218838;
-    transform: translateY(-3px);
-    /* Slight upward movement */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
+}
+
+.styled-button:active {
+    transform: translateY(2px);
 }
 
 /* Special styling for the action buttons */
@@ -126,15 +259,8 @@ body {
 
 .action-button:hover {
     background-color: #0069d9;
-    transform: translateY(-3px);
-    /* Slight upward movement */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-
-/*-------------------------------------End button ----------------------------------------------------------- */
-
-/*-------------------------------------หลอดเลือด----------------------------------------------------------- */
 /* Progress Bar Container */
 .progress-container {
     width: 100%;
@@ -145,11 +271,8 @@ body {
     margin-bottom: 20px;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Add shadow for 3D effect */
 }
 
-
-/* Progress Bar */
 .progress-bar {
     height: 20px;
     width: 0;
@@ -159,25 +282,20 @@ body {
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    /* 3D effect */
     animation: pulse 1.5s infinite alternate;
-    /* Animation for color pulsing */
 }
 
 .progress-container:hover .progress-bar {
     transform: scaleY(1.1);
-    /* Slight upward movement */
 }
 
 @keyframes pulse {
     0% {
         background: linear-gradient(145deg, #007bff, #0056b3);
     }
-
     50% {
         background: linear-gradient(145deg, #00bfff, #1e90ff);
     }
-
     100% {
         background: linear-gradient(145deg, #007bff, #0056b3);
     }
@@ -199,60 +317,26 @@ body {
     0% {
         left: -100%;
     }
-
     100% {
         left: 100%;
     }
 }
 
-
-
-
-/* Styled Button (Already Provided) */
-.styled-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    color: white;
-    background: linear-gradient(145deg, #ff7f50, #ff6347);
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 20px;
-    /* Space between the button and the progress bar */
-}
-
-.styled-button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
-}
-
-.styled-button:active {
-    transform: translateY(2px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-/*------------------------------------- จบ หลอดเลือด----------------------------------------------------------- */
-
+/* Top Bar */
 .top-bar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-
     color: white;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
-    /* Space between Coins and buttons-container */
     align-items: flex-start;
-    /* Align elements to the top */
-
     z-index: 1000;
 }
 
-/*-------------------------------------  coins ----------------------------------------------------------- */
+/* Coins Display */
 .coins {
     font-size: 22px;
     color: #fff;
@@ -284,7 +368,6 @@ body {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-/*------------------------------------- end   coins ----------------------------------------------------------- */
 /* Collect Points Button */
 .collect-points-button {
     padding: 10px 20px;
@@ -325,254 +408,126 @@ body {
 
 /* Popup Content */
 .popup {
+    display: none; /* Hidden by default */
     position: fixed;
-    top: 0;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    display: none;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
+.popup.show {
+    display: flex;
+    opacity: 1;
+}
 
 .popup-content {
     background: #fff;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 400px;
     text-align: center;
-}
-
-/* Close Button */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    color: #333;
-}
-.close-btn:hover {
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
-
-/* Calendar Icon */
-.calendar-icon {
-    font-size: 24px;
-    cursor: pointer;
-    margin-top: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-    padding: 10px;
-    background-color: #f0f0f0;
-    transition: background-color 0.3s, transform 0.3s;
     position: relative;
-    /* Ensures dropdown is positioned relative to this */
-    display: inline-block;
 }
 
-/* Dropdown Content */
-.dropdown-content {
-    display: none;
-    /* Hidden by default */
-    position: absolute;
-    top: 100%;
-    /* Position directly below the calendar icon */
-    right: 0;
-    /* Align to the right edge of the calendar icon */
-    background-color: white;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    z-index: 1000;
-    border-radius: 5px;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.dropdown-content.show {
-    display: block;
-    /* Show when active */
-    opacity: 1;
-    transform: translateY(0);
-    /* Slide down */
-}
-
-/* Dropdown List Styling */
-.dropdown-content ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.dropdown-content li {
-    padding: 8px 12px;
-    cursor: pointer;
-}
-
-.dropdown-content li:hover {
-    background-color: #f1f1f1;
-}
-
-/* Add a small margin to avoid dropdown content overlapping with calendar icon */
-.calendar-icon+.dropdown-content {
-    margin-top: 5px;
-}
-
-
-/* Calendar Popup */
-#calendar-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.popup-content {
     background-color: #fff;
     padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
     border-radius: 10px;
-    display: none;
-}
-
-.popup ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.popup ul li {
-    margin-bottom: 10px;
-    font-size: 16px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-
-
-
-/*------------------------------------- Question  ----------------------------------------------------------- */
-/* ซ่อน quiz-container เริ่มต้น */
-.quiz-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    position: relative;
     width: 80%;
     max-width: 600px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
-fieldset {
+.popup-content.correct {
+    border: 2px solid green;
+}
+
+.popup-content.incorrect {
+    border: 2px solid red;
+}
+
+.popup-content.show {
+    opacity: 1;
+}
+
+
+
+
+
+
+.popup-content .close-popup {
+    background-color: #dc3545;
+    color: white;
     border: none;
-    margin-bottom: 20px;
-}
-
-legend {
-    font-size: 18px;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-label {
-    display: block;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px 20px;
     font-size: 16px;
-    margin-bottom: 8px;
+    transition: background-color 0.3s ease;
 }
 
-input[type="checkbox"] {
+.popup-content .close-popup:hover {
+    background-color: #c82333;
+}
+
+/* Quiz Container */
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+}
+
+.quiz-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.quiz-container label {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.quiz-container input[type="radio"] {
     margin-right: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
 }
 
-button.collect-points-button {
-    display: block;
-    width: 100%;
+.quiz-container input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
     margin-top: 20px;
 }
 
-/*------------------------------------- END  Question  ----------------------------------------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 768px) {
-    .diagonal-banner {
-        width: 90%;
-        max-width: none;
-    }
-    
-    .styled-button {
-        padding: 12px 24px;
-        font-size: 14px;
-    }
-    
-    .progress-bar {
-        height: 15px;
-    }
-    
-    .current-time {
-        font-size: 14px;
-        padding: 4px 8px;
-    }
-    
-    .farm-plot img {
-        max-width: 100%;
-    }
-    
-    .button-row {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 480px) {
-    .diagonal-banner {
-        width: 100%;
-        font-size: 16px;
-        height: 40px;
-    }
-    
-    .styled-button {
-        padding: 10px 20px;
-        font-size: 12px;
-    }
-    
-    .progress-bar {
-        height: 12px;
-    }
-    
-    .current-time {
-        font-size: 12px;
-        padding: 3px 6px;
-    }
-    
-    .coins {
-        font-size: 18px;
-        padding: 8px 16px;
-    }
-    
-    .calendar-icon {
-        font-size: 20px;
-        padding: 8px;
-    }
+.quiz-container input[type="submit"]:hover {
+    background-color: #0069d9;
+    transform: translateY(-2px);
 }

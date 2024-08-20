@@ -1,0 +1,152 @@
+/* CSS สำหรับ Level 2 */
+body {
+    font-family: Arial, sans-serif;
+    background: #282c34; /* พื้นหลังสีเข้มสำหรับ Neon Garden */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Level Banner */
+.level-banner {
+    background: linear-gradient(135deg, #ff5f6d, #ffc371);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Neon Plot */
+.neon-plot {
+    text-align: center;
+    margin: 20px;
+}
+
+.neon-plot img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+/* Progress Container */
+.progress-container {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    overflow: hidden;
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+/* Progress Bar */
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00bcd4, #4caf50);
+    border-radius: 25px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Controls */
+.controls {
+    text-align: center;
+    margin: 20px;
+}
+
+.icon-container {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.styled-button {
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.styled-button:hover {
+    background-color: #0097a7;
+}
+
+.button-row {
+    margin-top: 20px;
+}
+
+.icon-button {
+    background-color: #444;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 24px;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: #666;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.coins, .user-info {
+    margin: 10px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.current-time {
+    font-size: 16px;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: #000;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.popup-content {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close-popup-button {
+    margin-top: 10px;
+}

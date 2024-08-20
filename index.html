@@ -7,6 +7,7 @@
     <title>Shopee Farm Game</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -28,13 +29,20 @@
         <div class="trophy-icon-container">
             <i class="fas fa-trophy"></i>
         </div>
-
         <button class="styled-button" onclick="waterPlants()">Water Plants</button>
         <div class="button-row">
-            <button class="styled-button action-button">Action 1</button>
-            <button class="styled-button action-button">Action 2</button>
-            <button class="styled-button action-button">Action 3</button>
-            <button class="styled-button action-button">Action 4</button>
+            <button class="icon-button">
+                <i class="fas fa-cog"></i> <!-- Gear icon -->
+            </button>
+            <button class="icon-button">
+                <i class="fas fa-bell"></i> <!-- Bell icon -->
+            </button>
+            <button class="icon-button">
+                <i class="fas fa-star"></i> <!-- Star icon -->
+            </button>
+            <button class="icon-button">
+                <i class="fas fa-heart"></i> <!-- Heart icon -->
+            </button>
         </div>
     </div>
 
@@ -42,6 +50,10 @@
     <div class="top-bar">
         <!-- Coins Display -->
         <div class="coins">Coins: <span id="coin-count">0</span></div>
+
+        <!-- User Information Display -->
+        <div class="user-info">Name: <span id="user-name">Guest</span>, Class: <span id="user-class">Unknown</span>
+        </div>
 
         <!-- Collect Points Button and Other Elements -->
         <div class="buttons-container">
@@ -60,9 +72,20 @@
 
             <!-- Collect Points Button -->
             <button class="styled-button collect-points-button">เก็บแต้ม</button>
+            <!-- Quiz Container -->
+            <!-- Popup HTML -->
+            <div id="popup" style="display: none;">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup()">&times;</span>
+                    <div id="quiz-container"></div>
+                    <!-- Optional: Add a button to close the popup -->
+                    <button class="styled-button close-popup-button" onclick="closePopup()">Close</button>
+                </div>
+            </div>
 
-            <!-- Quiz Container (will be added dynamically) -->
-            <div id="quiz-container"></div>
+
+
+
 
             <!-- Sound Button -->
             <button id="sound-button" class="styled-button sound-button">
@@ -79,7 +102,31 @@
     <script src="./js/sound.js"></script>
     <script src="./js/calendar.js"></script>
     <script src="./js/question.js"></script>
+    <script src="./js/coin.js"></script>
+    <script src="./js/quiz.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function updateDisplay() {
+            var name = localStorage.getItem('userName');
+            var className = localStorage.getItem('userClass');
+            var coinCountElement = document.getElementById('coin-count');
+            var userNameElement = document.getElementById('user-name');
+            var userClassElement = document.getElementById('user-class');
+
+            if (name && className) {
+                coinCountElement.textContent = '0';
+                userNameElement.textContent = name;
+                userClassElement.textContent = className;
+            } else {
+                userNameElement.textContent = 'Guest';
+                userClassElement.textContent = 'Unknown';
+            }
+        }
+
+        // Call the function on page load
+        window.onload = updateDisplay;
+    </script>
 </body>
 
 </html>

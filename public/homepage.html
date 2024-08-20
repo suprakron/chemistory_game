@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="popup-form" style="display: block;">
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+            <h3>กรอกข้อมูลของคุณ</h3>
+            <input type="text" id="name" placeholder="กรอกชื่อของคุณ" required>
+            <input type="text" id="class" placeholder="กรอกชั้นเรียนของคุณ" required>
+            <button onclick="submitForm()">ส่งข้อมูล</button>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const userClass = document.getElementById('class').value;
+            const scoreLevel1 = 100; // สมมุติคะแนนที่ได้จาก level 1
+            const scoreLevel2 = 200; // สมมุติคะแนนที่ได้จาก level 2
+
+            // ส่งคะแนนเลเวล 1
+            fetch('/save-score', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    class: userClass,
+                    level: 1,
+                    score: scoreLevel1
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('คะแนนเลเวล 1 ถูกบันทึก:', data);
+
+                // ส่งคะแนนเลเวล 2
+                return fetch('/save-score', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        class: userClass,
+                        level: 2,
+                        score: scoreLevel2
+                    })
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('คะแนนเลเวล 2 ถูกบันทึก:', data);
+                // ซ่อนฟอร์มหลังจากบันทึกข้อมูลแล้ว
+                document.getElementById('popup-form').style.display = 'none';
+            })
+            .catch(error => console.error('เกิดข้อผิดพลาด:', error));
+        }
+    </script>
+</body>
+
+</html>

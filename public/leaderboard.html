@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .leaderboard-container {
+            width: 90%;
+            max-width: 800px;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            box-shadow: 6px 6px 12px #b3b3b3, -6px -6px 12px #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .leaderboard-table th {
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .leaderboard-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .leaderboard-table tr:hover {
+            background-color: #e0f2f1;
+            cursor: pointer;
+        }
+
+        .leaderboard-table td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .leaderboard-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="leaderboard-container">
+        <h2>Leaderboard</h2>
+        <table id="leaderboard-table" class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Level</th>
+                    <th>Score</th>
+                    <th>Answer 1</th>
+                    <th>Answer 2</th>
+                    <th>Correct Answer 1</th>
+                    <th>Correct Answer 2</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+                <!-- Rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Fetch leaderboard data and display it
+        fetch('/leaderboard-data')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('leaderboard-body');
+                tbody.innerHTML = ''; // Clear any existing content
+
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+
+                    tr.innerHTML = `
+                        <td>${row.name}</td>
+                        <td>${row.class}</td>
+                        <td>${row.level}</td>
+                        <td>${row.score}</td>
+                        <td>${row.answer1 ? row.answer1 : 'N/A'}</td>
+                        <td>${row.answer2 ? row.answer2 : 'N/A'}</td>
+                        <td>${row.answer1 === row.correctAnswer1 ? 'Correct' : row.correctAnswer1}</td>
+                        <td>${row.answer2 === row.correctAnswer2 ? 'Correct' : row.correctAnswer2}</td>
+                    `;
+
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching leaderboard data:', error);
+            });
+    </script>
+</body>
+
+</html>

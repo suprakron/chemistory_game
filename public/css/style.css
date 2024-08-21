@@ -551,16 +551,21 @@ body {
 }
 
 /* Add this CSS for fireworks effect */
+/* Fireworks effect styling */
 .fireworks {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: url('path_to_your_fireworks_image.gif') no-repeat center center;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: url('../img/fire.avif') no-repeat center center;
     background-size: cover;
+    transform: translate(-50%, -50%);
     z-index: 9999;
+    pointer-events: none;
 }
+
+
 /* Add this CSS for feedback display */
 #feedback {
     display: none;

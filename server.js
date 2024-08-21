@@ -23,12 +23,28 @@ const db = new sqlite3.Database('./quiz.db', (err) => {
             class TEXT NOT NULL,
             level INTEGER NOT NULL,
             score INTEGER NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            answer1 TEXT NOT NULL,
+            answer2 TEXT NOT NULL
         )`, (err) => {
             if (err) {
                 console.error('Error creating scores table:', err.message);
             } else {
                 console.log('Scores table created or already exists.');
+            }
+        });
+
+        // Create 'answers' table if it doesn't exist
+        db.run(`CREATE TABLE IF NOT EXISTS answers (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            answer1 TEXT NOT NULL,
+            answer2 TEXT NOT NULL,
+            coinCount INTEGER NOT NULL
+        )`, (err) => {
+            if (err) {
+                console.error('Error creating answers table:', err.message);
+            } else {
+                console.log('Answers table created or already exists.');
             }
         });
     }
@@ -47,12 +63,11 @@ app.get('/leaderboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'leaderboard.html'));
 });
 
-
 // Route to handle saving quiz answers
 app.post('/save-answers', (req, res) => {
     const { answer1, answer2, coinCount } = req.body;
 
-    if (!answer1 || !answer2 || coinCount === undefined) {
+    if (answer1 === undefined || answer2 === undefined || coinCount === undefined) {
         return res.status(400).json({ error: 'ข้อมูลไม่สมบูรณ์' });
     }
 
@@ -67,27 +82,22 @@ app.post('/save-answers', (req, res) => {
     });
 });
 
-
-
-
-
-
 // Route to save score
 app.post('/save-score', (req, res) => {
     const { name, class: userClass, level, score, answer1, answer2 } = req.body;
 
     if (!name || !userClass || level === undefined || score === undefined || answer1 === undefined || answer2 === undefined) {
-        return res.status(400).json({ error: 'Incomplete data' });
+        return res.status(400).json({ error: 'ข้อมูลไม่สมบูรณ์' });
     }
 
     const query = `INSERT INTO scores (name, class, level, score, answer1, answer2) VALUES (?, ?, ?, ?, ?, ?)`;
     db.run(query, [name, userClass, level, score, answer1, answer2], function (err) {
         if (err) {
-            console.error('Error saving score:', err.message);
-            return res.status(500).json({ error: 'Unable to save score' });
+            console.error('เกิดข้อผิดพลาดในการบันทึกคะแนน:', err.message);
+            return res.status(500).json({ error: 'ไม่สามารถบันทึกคะแนนได้' });
         }
 
-        res.status(200).json({ message: 'Score saved successfully', id: this.lastID });
+        res.status(200).json({ message: 'บันทึกคะแนนสำเร็จ', id: this.lastID });
     });
 });
 
@@ -97,21 +107,9 @@ app.get('/leaderboard-data', (req, res) => {
 
     db.all(query, [], (err, rows) => {
         if (err) {
-            console.error('Error retrieving leaderboard data:', err.message);
-            return res.status(500).json({ error: 'Unable to retrieve data' });
+            console.error('เกิดข้อผิดพลาดในการดึงข้อมูลจาก leaderboard:', err.message);
+            return res.status(500).json({ error: 'ไม่สามารถดึงข้อมูลได้' });
         }
-
-        // Add correct answers for comparison
-        const correctAnswers = {
-            question1: 3,  // Update with correct answer value
-            question2: 2   // Update with correct answer value
-        };
-
-        // Add correct answer feedback
-        rows.forEach(row => {
-            row.correctAnswer1 = correctAnswers.question1;
-            row.correctAnswer2 = correctAnswers.question2;
-        });
 
         res.status(200).json(rows);
     });
